@@ -53,7 +53,7 @@ export function Footer() {
           </Button>
         </div>
 
-        <div className="border-t border-white/10 pt-6 text-sm text-white/60 md:col-span-2">
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-white/60 md:col-span-2 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.gymName}. Kontakt:{" "}
             <a
@@ -63,6 +63,7 @@ export function Footer() {
               {siteConfig.contactEmail}
             </a>
           </p>
+          <p>{siteConfig.footer.developerCredit}</p>
         </div>
       </div>
     </footer>

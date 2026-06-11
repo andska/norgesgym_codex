@@ -1,15 +1,21 @@
 const businessFacts = {
   gymName: "Norgesgym",
+  logoSubtext: "Moss",
   locationShort: "Solgaard Skog, Moss",
   seoLocation: "Treningssenter i Moss",
-  accessHours: "Døgnåpent",
+  accessHours: "Åpent 24/7",
   accessMethod: "Digital tilgang via Membro",
-  accessStatement: "Døgnåpent med digital tilgang via Membro",
-  accessSentence: "døgnåpent med digital tilgang via Membro",
+  accessStatement: "Åpent 24/7 med digital tilgang via Membro",
+  accessSentence: "åpent 24/7 med digital tilgang via Membro",
   receptionHours: "Mandag-torsdag 16:00-18:30",
   receptionHoursShort: "man-tor 16:00-18:30",
-  signupFee: "199 kr",
+  monthlyPrice: "429 kr mnd.",
+  dropInPrice: "120 kr",
+  signupFee: "200 kr",
   annualFee: "0 kr",
+  binding: "Ingen bindingstid",
+  cancellation: "1 måned oppsigelsestid fra neste månedsskifte",
+  payment: "Betaling med AvtaleGiro",
   parking: "Gratis parkering",
   // TODO: Replace with exact street address when confirmed.
   address: "Solgaard Skog, Moss",
@@ -36,8 +42,8 @@ const urls = {
   membroAppStore: productionUrls.membroAppStoreUrl,
   googleMaps:
     "https://www.google.com/maps/search/?api=1&query=Norgesgym%20Solgaard%20Skog%20Moss",
-  // TODO: Add Google Maps embed URL when available.
-  googleMapsEmbed: "",
+  googleMapsEmbed:
+    "https://www.google.com/maps?q=Norgesgym%20Solgaard%20Skog%20Moss&output=embed",
   membro: productionUrls.myPageUrl,
   contact: `mailto:${businessFacts.contactEmail}`,
 } as const;
@@ -47,18 +53,18 @@ export const siteConfig = {
   ...productionUrls,
   urls,
   description:
-    "Et lokalt treningssenter i Moss for deg som vil trene jevnt, trygt og enkelt.",
+    "Hos Norgesgym har du alle forutsetningene for å lykkes med dine treningsmål.",
   navigation: [
-    { label: "Medlemskap", href: "#medlemskap" },
+    { label: "Kom i gang", href: "#kom-i-gang" },
+    { label: "Priser", href: "#priser" },
     { label: "Beliggenhet", href: "#beliggenhet" },
-    { label: "Membro", href: "#membro" },
     { label: "FAQ", href: "#faq" },
   ],
   hero: {
-    eyebrow: "TRENINGSSENTER I MOSS",
-    headline: "Styrketrening på dine vilkår.",
-    headlineLines: ["Styrketrening", "på dine vilkår."],
-    body: "Et lokalt treningssenter i Moss for deg som vil trene jevnt, trygt og enkelt.",
+    eyebrow: "Ditt lokale treningssenter",
+    headline: "Trening på dine vilkår.",
+    headlineLines: ["Trening", "på dine vilkår."],
+    body: "Hos Norgesgym har du alle forutsetningene for å lykkes med dine treningsmål.",
     primaryCta: "Bli medlem",
     secondaryCta: "Prøv gratis",
     image: {
@@ -67,12 +73,32 @@ export const siteConfig = {
     },
     placeholder: {
       label: "Bilde kommer",
-      title: "Nytt bilde fra lokalet legges inn her",
+      title: "Bilde av lokalet kommer",
     },
-    trustPoints: [
-      `${businessFacts.accessHours} med Membro`,
-      businessFacts.parking,
-      "Ved Solgaard Skog",
+  },
+  gettingStarted: {
+    eyebrow: "Lett som 1-2-3",
+    title: "Kom i gang",
+    steps: [
+      {
+        number: "01",
+        title: "Meld deg inn på nett",
+        body: `Det tar et par minutter. Du kan også velge drop-in for ${businessFacts.dropInPrice} hvis du bare vil trene en gang.`,
+      },
+      {
+        number: "02",
+        title: "Last ned Membro-appen",
+        body: "Appen er nøkkelen din til senteret, hele døgnet, alle dager.",
+        actions: [
+          { label: "App Store", href: productionUrls.membroAppStoreUrl },
+          { label: "Google Play", href: productionUrls.membroGooglePlayUrl },
+        ],
+      },
+      {
+        number: "03",
+        title: "Tren når du vil",
+        body: "Senteret er døgnåpent året rundt. Resepsjonen er bemannet mandag til torsdag 16:00 til 18:30.",
+      },
     ],
   },
   practicalValuePoints: [
@@ -93,33 +119,59 @@ export const siteConfig = {
       detail: "Ved lokalet",
     },
   ],
-  membership: {
-    eyebrow: "Medlemskap",
-    title: "Medlemskap og prøve",
-    body: "Start fast, prøv først, eller ta kontakt hvis du lurer på noe.",
-    priceCta: "Se medlemskap og priser",
+  pricing: {
+    eyebrow: "Priser",
+    title: "Prøv oss",
+    body: "Tydelige priser, enkel innmelding og ingen bindingstid.",
     options: [
       {
-        id: "bli-medlem",
-        title: "Bli medlem",
-        description: "For deg som vil starte fast trening hos Norgesgym.",
-        cta: "Gå til innmelding",
-        href: urls.membership,
+        id: "membership",
+        tabLabel: "Bli medlem",
+        label: "Månedspris",
+        price: businessFacts.monthlyPrice,
+        body: "Fast medlemskap for deg som vil trene jevnt og ha fri tilgang.",
+        actions: [{ label: "Gå til innmelding", href: urls.membership }],
+        details: [
+          { label: "Innmeldingsavgift", value: businessFacts.signupFee },
+          { label: "Årsavgift", value: businessFacts.annualFee },
+          { label: "Bindingstid", value: businessFacts.binding },
+          { label: "Oppsigelse", value: businessFacts.cancellation },
+          { label: "Betaling", value: businessFacts.payment },
+        ],
       },
       {
-        id: "proev-gratis",
-        title: "Prøv gratis",
-        description:
-          "For deg som vil se lokalet og prøve før du bestemmer deg.",
-        cta: "Book prøvetime",
-        href: urls.trial,
+        id: "dropIn",
+        tabLabel: "Drop-in",
+        label: "Drop-in",
+        price: businessFacts.dropInPrice,
+        body: "For deg som bare vil trene én gang uten medlemskap.",
+        actions: [{ label: "Velg drop-in", href: urls.membership }],
+        details: [
+          { label: "Innmeldingsavgift", value: "0 kr" },
+          { label: "Årsavgift", value: "0 kr" },
+          { label: "Betaling", value: "Kort" },
+          { label: "Tilgang", value: "1 dag" },
+        ],
       },
       {
-        id: "spor-oss",
-        title: "Spør oss",
-        description: "Har du spørsmål om medlemskap, tilgang eller trening?",
-        cta: "Kontakt oss",
-        href: urls.contact,
+        id: "trial",
+        tabLabel: "Prøv gratis",
+        label: "Prøvetime",
+        price: "0 kr",
+        body: "Last ned Membro-appen for å velge prøvetime og følge instruksjonene der.",
+        actions: [
+          { label: "App Store", href: urls.membroAppStore },
+          { label: "Google Play", href: urls.membroGooglePlay },
+        ],
+        details: [
+          { label: "Pris", value: "0 kr" },
+          { label: "App", value: "Last ned Membro-appen" },
+          { label: "Betaling", value: "Ingen betaling for prøvetime" },
+          {
+            label: "Slik gjør du",
+            value: "Velg prøvetime i Membro etter at appen er installert.",
+          },
+        ],
       },
     ],
   },
@@ -140,30 +192,9 @@ export const siteConfig = {
   },
   locationSection: {
     eyebrow: "Beliggenhet",
-    title: "Du finner oss på Solgaard Skog i Moss",
-    body: "Norgesgym ligger ved Solgaard Skog i Moss, med enkel adkomst og gratis parkering.",
+    title: "Finn oss",
+    body: "Du finner Norgesgym på Solgaard Skog i Moss. Åpne kartet for veibeskrivelse.",
     cta: "Åpne i Google Maps",
-    details: [
-      { label: "Ved Solgaard Skog", value: businessFacts.address },
-      { label: businessFacts.parking, value: "Rett ved lokalet" },
-      { label: businessFacts.seoLocation, value: "Gym i Moss" },
-    ],
-  },
-  membro: {
-    eyebrow: "Membro",
-    title: "Tilgang og medlemskap i Membro",
-    body: "Som medlem bruker du Membro til digital tilgang, medlemskap og praktisk informasjon.",
-    accessTitle: businessFacts.accessStatement,
-    accessDetail: "Åpne døren med Membro-appen når du skal trene.",
-    receptionLabel: "Resepsjonstid",
-    receptionDetail: businessFacts.receptionHours,
-    points: [
-      "Digital tilgang via Membro",
-      "Åpne døren med Membro-appen",
-      "Administrer medlemskapet ditt",
-      "Få praktisk informasjon samlet ett sted",
-    ],
-    cta: "Åpne Membro",
   },
   faq: {
     eyebrow: "FAQ",
@@ -171,11 +202,11 @@ export const siteConfig = {
     items: [
       {
         question: "Hva koster det å starte?",
-        answer: `Innmeldingsavgiften er ${businessFacts.signupFee}. Månedlige medlemspriser vises i medlemsløsningen.`,
+        answer: `Medlemskapet koster ${businessFacts.monthlyPrice} Innmeldingsavgiften er ${businessFacts.signupFee}.`,
       },
       {
         question: "Er det årsavgift eller skjulte kostnader?",
-        answer: `Årsavgiften er ${businessFacts.annualFee}. Viktige kostnader skal være synlige før du melder deg inn.`,
+        answer: `Årsavgiften er ${businessFacts.annualFee}, og medlemskapet har ${businessFacts.binding.toLowerCase()}.`,
       },
       {
         question: "Hvordan får jeg tilgang til gymmet?",
@@ -202,6 +233,7 @@ export const siteConfig = {
     ],
   },
   footer: {
-    tagline: "Styrketrening på dine vilkår.",
+    tagline: "Trening på dine vilkår.",
+    developerCredit: "Nettsiden er utviklet av Skaiaa Teknologi.",
   },
 } as const;

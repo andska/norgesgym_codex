@@ -4,7 +4,10 @@ export function FAQPreview() {
   const { faq } = siteConfig;
 
   return (
-    <section id="faq" className="bg-background py-10 md:py-14 lg:py-16">
+    <section
+      id="faq"
+      className="scroll-mt-24 bg-background py-10 md:py-14 lg:py-16"
+    >
       <div className="site-shell grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-12">
         <div className="max-w-xl">
           <p className="eyebrow">{faq.eyebrow}</p>

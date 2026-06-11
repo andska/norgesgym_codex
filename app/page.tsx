@@ -1,11 +1,11 @@
 import { FAQPreview } from "@/components/FAQPreview";
 import { Footer } from "@/components/Footer";
+import { GettingStartedSection } from "@/components/GettingStartedSection";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { LocationSection } from "@/components/LocationSection";
-import { MembershipPreview } from "@/components/MembershipPreview";
-import { MembroSection } from "@/components/MembroSection";
 import { PhotoPlaceholderSection } from "@/components/PhotoPlaceholderSection";
+import { PricingSection } from "@/components/PricingSection";
 
 export default function Home() {
   return (
@@ -13,10 +13,10 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
-        <MembershipPreview />
+        <GettingStartedSection />
+        <PricingSection />
         <PhotoPlaceholderSection />
         <LocationSection />
-        <MembroSection />
         <FAQPreview />
       </main>
       <Footer />

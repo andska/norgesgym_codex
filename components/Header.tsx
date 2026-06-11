@@ -12,7 +12,7 @@ export function Header() {
             <span className="text-purple">GYM</span>
           </span>
           <span className="text-xs font-medium text-muted md:text-sm">
-            {siteConfig.seoLocation}
+            {siteConfig.logoSubtext}
           </span>
         </Link>
 
